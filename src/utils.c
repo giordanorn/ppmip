@@ -13,9 +13,17 @@ newPixel()
 }
 
 void
-checkArgs(char *arg)
+checkArgs(char **args)
 {
-	switch(parseOption(arg))
+	if (!args[1])
+	{
+		printf("You must pass at least one argument. Exiting...\n");
+		exit(1);
+	}
+
+	char *option = args[1];
+
+	switch(parseOption(option))
 	{
 		case THR:
 		case BLU:
@@ -23,10 +31,10 @@ checkArgs(char *arg)
 		case ROT:
 		case AMP:
 		case RED:
-			printf("Option %s is currently working in progress. It will be available soon.\n");
+			printf("Option %s is currently working in progress. It will be available soon.\n", option);
 			exit(1);
 		default:
-			printf("Unrecognized option %s. Exiting...\n", arg);
+			printf("Unrecognized option %s. Exiting...\n", option);
 			exit(1);
 	}
 	return;

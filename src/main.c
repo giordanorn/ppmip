@@ -3,7 +3,7 @@
 int
 main(int argc, char *argv[])
 {
-	checkArgs(argv[1]);
+	checkArgs(argv);
 	
 	return 0;
 }

@@ -31,7 +31,7 @@ enum Options_t {
 } Options;
 
 
-void checkArgs(char *arg);
+void checkArgs(char **args);
 int parseOption(char *option);
 
 #endif
