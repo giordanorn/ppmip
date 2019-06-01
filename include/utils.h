@@ -1,37 +1,40 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #define uchar unsigned char
+#define uint unsigned int
 
-typedef struct Pixel_t {
+enum {
+	HELP,
+	GREYSCALE,
+	THRESHOLD,
+	BLUR,
+	SHARP,
+	ROTATE,
+	AMPLIFY,
+	REDUCE,
+} OPTIONSMAP;
+
+const int TOTAL_OPTIONS;
+char* OPTIONS(int);
+
+typedef struct {
 	uchar r;
 	uchar g;
 	uchar b;
 } Pixel;
 
-typedef struct PPM_t {
+typedef struct {
+	uint width;
+	uint height;
+	uint color_bits;
 	Pixel **pixelmap;
 } PPM;
 
-
-Pixel newPixel();
-
-
-enum Options_t {
-	THR,
-	BLU,
-	SHA,
-	ROT,
-	AMP,
-	RED
-} Options;
-
-
-void checkArgs(char **args);
-int parseOption(char *option);
+	
+int checkOption(char *);
+int parseOption(char *);
+void printHelp(void);
+void printImageInfo(PPM);
 
 #endif

@@ -1,60 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "utils.h"
 
-Pixel
-newPixel()
+const int TOTAL_OPTIONS = 8;
+
+char*
+OPTIONS(int option)
 {
-	Pixel pixel;
-
-	pixel.r = 0;
-	pixel.g = 0;
-	pixel.b = 0;
-
-	return pixel;
+	char *options[] = {
+		"help",
+		"greyscale",
+		"threshold",
+		"blur",
+		"sharp",
+		"rotate",
+		"amplify",
+		"reduce"
+	};
+	return options[option];
 }
 
-void
-checkArgs(char **args)
+int
+checkOption(char *argument)
 {
-	if (!args[1])
-	{
+	if (!argument) {
 		printf("You must pass at least one argument. Exiting...\n");
-		exit(1);
+		return -1;
 	}
-
-	char *option = args[1];
-
-	switch(parseOption(option))
-	{
-		case THR:
-		case BLU:
-		case SHA:
-		case ROT:
-		case AMP:
-		case RED:
-			printf("Option %s is currently working in progress. It will be available soon.\n", option);
-			exit(1);
-		default:
-			printf("Unrecognized option %s. Exiting...\n", option);
-			exit(1);
+	else {
+		char *option = argument;
+		return parseOption(option);
 	}
-	return;
 }
 
 int
 parseOption(char *option)
 {
-	if (strcmp(option, "thr") == 0)
-		return THR;
-	else if (strcmp(option, "blu") == 0)
-		return BLU;
-	else if (strcmp(option, "sha") == 0)
-		return SHA;
-	else if (strcmp(option, "rot") == 0)
-		return ROT;
-	else if (strcmp(option, "amp") == 0)
-		return AMP;
-	else if (strcmp(option, "red") == 0)
-		return RED;
-	else
-		return -1;
+	for (int i = 0; i < TOTAL_OPTIONS; i++) {
+		if (strcmp(option, OPTIONS(i)) == 0) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+void
+printHelp()
+{
+	printf("The available options are:\n");
+	for (short i = 0; i < TOTAL_OPTIONS; i++) {
+		printf("%s\t\t--\n", OPTIONS(i));
+	}
+}
+
+void
+printImageInfo(PPM image)
+{
+	printf("Width: %d\n", image.width);
+	printf("Height: %d\n", image.height);
+	printf("Pixel color bits: %d\n", image.color_bits);
+	printf("Pixel Map:\t\tR\tG\tB\n");
+	for (int i = 0; i < image.width; i++) {
+		for (int j = 0; j < image.height; j++) {
+			printf("Pixel[%d][%d]:\t\t%d\t%d\t%d\n", i, j, image.pixelmap[i][j].r, image.pixelmap[i][j].g, image.pixelmap[i][j].b);
+		}
+	}
 }
