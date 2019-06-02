@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#include "read.h"
+#include "file.h"
 #include "filters.h"
 
 int
@@ -9,6 +9,7 @@ main(int argc, char *argv[])
 {
 	char *firstArgument = argv[1];
 	char *secondArgument = argv[2];
+	char *thirdArgument = argv[3];
 
 	int option = checkOption(firstArgument);
 
@@ -18,18 +19,24 @@ main(int argc, char *argv[])
 			break;
 		case GREYSCALE:
 			if (!secondArgument)
-			{
+			{	
 				printf("%s option requires a path to a file as second argument.\n", OPTIONS(GREYSCALE));
 				exit(1);
 			}
 			else
 			{
 				PPM image = *readPPM(secondArgument);
-				printf("Before applying greyscale filter:\t -- This is a debug message\n");
-				printImageInfo(image);
 				image = applyGreyscale(image);
-				printf("After applying greyscale filter:\t -- This is a debug message\n");
-				printImageInfo(image);
+				if (!thirdArgument)
+				{
+					printf("You might pass a third argument with a path to the output file.\n");
+					exit(1);
+				}
+				else
+				{
+					writePPM(thirdArgument, image);
+					break;
+				}
 			}
 			break;
 		case THRESHOLD:
@@ -42,7 +49,7 @@ main(int argc, char *argv[])
 			break;
 		default:
 			printf("Unrecognized option %s. Exiting...\n", argv[1]);
-			return 1;
+			exit(1);
 	}
 
 	return 0;

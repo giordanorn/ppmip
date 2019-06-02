@@ -73,3 +73,19 @@ printPixel(int line, int column, Pixel pixel)
 {
 	printf("Pixel[%d][%d]:\t\t%d\t%d\t%d\n", line, column, pixel.red, pixel.green, pixel.blue);
 }
+
+bool
+userConfirmation(char *message)
+{
+	char confirmation;
+	printf("%s [y/N] ", message);
+	scanf("%c", &confirmation);
+	if (confirmation == 'y' || confirmation == 'Y')
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}

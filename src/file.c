@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "read.h"
+#include "file.h"
 
 PPM*
 readPPM(char *pathto)
@@ -22,7 +22,10 @@ readPPM(char *pathto)
 	// Identifier has to be P3
 	if ( buffer[0] == 'P' && buffer[1] == '3' && buffer[2] == '\0' )
 	{
-		printf("Your file has an identifier of a PPM image! -- This is a debug message.\n");
+		if (DEBUG)
+		{
+			printf("Your file has an identifier of a PPM image! -- This is a debug message.\n");
+		}
 	}
 	else
 	{
@@ -60,3 +63,52 @@ readPPM(char *pathto)
 	return image;
 }
 
+void
+writePPM(char *pathto, PPM image)
+{
+	FILE *file;
+	file = fopen(pathto, "r");
+
+	if ( file == NULL || userConfirmation("The output file already exists, do you want to overwrite?") == true )
+	{
+		if (VERBOSE)
+		{
+			printf("Writing file \"%s\"...\n", pathto);
+		}
+
+		file = fopen(pathto, "w");
+
+		// Write identifier
+		fprintf(file, "P3\n");
+
+		// Write dimensions
+		fprintf(file, "%u %u\n", image.width, image.height);
+
+		// Write color bits
+		fprintf(file, "%u\n", image.color_bits);
+
+		// Write pixel map
+		for (ushort i = 0; i < image.width; i++)
+		{
+			for (ushort j = 0; j < image.height; j++)
+			{
+				fprintf(file, "%d %d %d\n", image.pixelmap[i][j].red, image.pixelmap[i][j].green, image.pixelmap[i][j].blue);
+			}
+		}
+
+		if (VERBOSE)
+		{
+			printf("Done.\n");
+		}
+	}
+	else
+	{
+		printf("Exiting...\n");
+		
+		if (!file)
+			return;
+	}
+
+	fclose(file);
+	return;
+}

@@ -1,9 +1,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#define DEBUG 0
+#define VERBOSE 1
+
 #define uint unsigned int
 #define uchar unsigned char
+#define ushort unsigned short
+
 #define Color uchar
+
+#include <stdbool.h>
 
 enum {
 	HELP,
@@ -38,5 +45,5 @@ int parseOption(char *);
 void printHelp(void);
 void printImageInfo(PPM);
 void printPixel(int, int, Pixel);
-
+bool userConfirmation(char *);
 #endif
