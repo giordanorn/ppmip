@@ -78,6 +78,12 @@ writePPM(char *pathto, PPM image)
 
 		file = fopen(pathto, "w");
 
+		if (!file)
+		{
+			printf("You have no permission to write this file.\n");
+			exit(1);
+		}
+
 		// Write identifier
 		fprintf(file, "P3\n");
 
@@ -96,19 +102,23 @@ writePPM(char *pathto, PPM image)
 			}
 		}
 
+		fclose(file);
+
 		if (VERBOSE)
 		{
 			printf("Done.\n");
 		}
+
 	}
 	else
 	{
-		printf("Exiting...\n");
+		printf("Nothing to be done. Exiting.\n");
 		
-		if (!file)
-			return;
+		if (file)
+		{
+			fclose(file);
+		}
 	}
 
-	fclose(file);
 	return;
 }
