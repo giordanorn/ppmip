@@ -63,7 +63,13 @@ printImageInfo(PPM image)
 	printf("Pixel Map:\t\tR\tG\tB\n");
 	for (int i = 0; i < image.width; i++) {
 		for (int j = 0; j < image.height; j++) {
-			printf("Pixel[%d][%d]:\t\t%d\t%d\t%d\n", i, j, image.pixelmap[i][j].r, image.pixelmap[i][j].g, image.pixelmap[i][j].b);
+			printPixel(i, j, image.pixelmap[i][j]);
 		}
 	}
+}
+
+void
+printPixel(int line, int column, Pixel pixel)
+{
+	printf("Pixel[%d][%d]:\t\t%d\t%d\t%d\n", line, column, pixel.red, pixel.green, pixel.blue);
 }

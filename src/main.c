@@ -17,14 +17,19 @@ main(int argc, char *argv[])
 			printHelp();
 			break;
 		case GREYSCALE:
-			if (!secondArgument) {
+			if (!secondArgument)
+			{
 				printf("%s option requires a path to a file as second argument.\n", OPTIONS(GREYSCALE));
 				exit(1);
 			}
-			else {
+			else
+			{
 				PPM image = *readPPM(secondArgument);
+				printf("Before applying greyscale filter:\t -- This is a debug message\n");
 				printImageInfo(image);
 				image = applyGreyscale(image);
+				printf("After applying greyscale filter:\t -- This is a debug message\n");
+				printImageInfo(image);
 			}
 			break;
 		case THRESHOLD:

@@ -1,8 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define uchar unsigned char
 #define uint unsigned int
+#define uchar unsigned char
+#define Color uchar
 
 enum {
 	HELP,
@@ -19,9 +20,9 @@ const int TOTAL_OPTIONS;
 char* OPTIONS(int);
 
 typedef struct {
-	uchar r;
-	uchar g;
-	uchar b;
+	Color red;
+	Color green;
+	Color blue;
 } Pixel;
 
 typedef struct {
@@ -36,5 +37,6 @@ int checkOption(char *);
 int parseOption(char *);
 void printHelp(void);
 void printImageInfo(PPM);
+void printPixel(int, int, Pixel);
 
 #endif
