@@ -43,6 +43,7 @@ typedef struct {
 int checkOption(char *);
 int parseOption(char *);
 void printHelp(void);
+void printShortHelp(char *);
 void printImageInfo(PPM);
 void printPixel(int, int, Pixel);
 bool userConfirmation(char *);

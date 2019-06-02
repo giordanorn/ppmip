@@ -7,9 +7,16 @@
 int
 main(int argc, char *argv[])
 {
+	char *programName = argv[0];
 	char *firstArgument = argv[1];
 	char *secondArgument = argv[2];
 	char *thirdArgument = argv[3];
+
+	if (!firstArgument)
+	{
+		printShortHelp(programName);
+		exit(1);
+	}
 
 	int option = checkOption(firstArgument);
 
@@ -45,10 +52,11 @@ main(int argc, char *argv[])
 		case ROTATE:
 		case AMPLIFY:
 		case REDUCE:
-			printf("Option %s is currently working in progress. It will be available soon.\n", argv[1]);
+			printf("%s: Option %s is currently working in progress. It will be available soon.\n", programName, firstArgument);
 			break;
 		default:
-			printf("Unrecognized option %s. Exiting...\n", argv[1]);
+			printf("%s: Unrecognized option %s. Exiting.\n", programName, firstArgument);
+			printShortHelp(programName);
 			exit(1);
 	}
 

@@ -25,12 +25,10 @@ int
 checkOption(char *argument)
 {
 	if (!argument) {
-		printf("You must pass at least one argument. Exiting...\n");
 		return -1;
 	}
 	else {
-		char *option = argument;
-		return parseOption(option);
+		return parseOption(argument);
 	}
 }
 
@@ -46,11 +44,18 @@ parseOption(char *option)
 }
 
 void
+printShortHelp(char *programName)
+{
+	printf("Usage: %s [FILTER] [INPUT_FILE] [OUTPUT_FILE]\n", programName);
+	printf("Try \'%s help\' for more information.\n", programName);
+}
+
+void
 printHelp()
 {
 	printf("The available options are:\n");
 	for (short i = 0; i < TOTAL_OPTIONS; i++) {
-		printf("%s\t\t--\n", OPTIONS(i));
+		printf("%s\n", OPTIONS(i));
 	}
 }
 
