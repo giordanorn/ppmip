@@ -1,5 +1,5 @@
 ## ppmip - PPM Image Processor
-ppmip (**PPM** **I**mage **P**rocessor) is a image processing software which handles .ppm files.
+ppmip (**PPM** **I**mage **P**rocessor) is an image processing software which handles .ppm files.
 
 ## Motivation
 This project is totally inspired on the final project of *Introdução às Técnicas de Programação* [Introduction to Programming Techniques (ITP)] course given by Professor Gustavo Girão, Professor André Mauricio and Professor Márjory Abreu at UFRN later on 2019.1 semester.
