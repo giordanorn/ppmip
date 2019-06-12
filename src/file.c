@@ -34,7 +34,7 @@ readPPM(char *pathto)
 		exit(1);
 	}
 
-	PPM *image = (PPM*) calloc(sizeof(PPM), 1);
+	PPM *image = (PPM*) calloc(1, sizeof(PPM));
 
 	// The usage of unisgned char is just because the value of the color bits will always be 255, change it if you want more color quality.
 	unsigned char color_bits;
@@ -43,13 +43,13 @@ readPPM(char *pathto)
 	fscanf(file, "%d %d", &width, &height);
 	fscanf(file, "%hhd", &color_bits);
 
-	image->pixelmap = (Pixel **) calloc(sizeof(Pixel*), width);
+	Pixel **pixelmap = (Pixel **) calloc(width, sizeof(Pixel*)); 
 	for (int i = 0; i < width; i++)
 	{
-		image->pixelmap[i] = (Pixel *) calloc(sizeof(Pixel), height);
+		pixelmap[i] = (Pixel *) calloc(height, sizeof(Pixel));
 		for (int j = 0; j < height; j++)
 		{
-			fscanf(file, "%hhd %hhd %hhd", &image->pixelmap[i][j].red, &image->pixelmap[i][j].green, &image->pixelmap[i][j].blue);
+			fscanf(file, "%hhd %hhd %hhd", &pixelmap[i][j].red, &pixelmap[i][j].green, &pixelmap[i][j].blue);
 		}
 	}
 
@@ -59,6 +59,7 @@ readPPM(char *pathto)
 	image->width = width;
 	image->height = height;
 	image->color_bits = color_bits;
+	image->pixelmap = pixelmap;
 
 	return image;
 }
