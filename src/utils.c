@@ -53,7 +53,7 @@ printShortHelp(char *programName)
 void
 printHelp()
 {
-	printf("The available options are:\n");
+	puts("The available options are:");
 	for (short i = 0; i < TOTAL_OPTIONS; i++) {
 		printf("%s\n", OPTIONS(i));
 	}
@@ -65,7 +65,7 @@ printImageInfo(PPM image)
 	printf("Width: %d\n", image.width);
 	printf("Height: %d\n", image.height);
 	printf("Pixel color bits: %d\n", image.color_bits);
-	printf("Pixel Map:\t\tR\tG\tB\n");
+	puts("Pixel Map:\t\tR\tG\tB");
 	for (int i = 0; i < image.width; i++) {
 		for (int j = 0; j < image.height; j++) {
 			printPixel(i, j, image.pixelmap[i][j]);

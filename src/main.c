@@ -36,7 +36,7 @@ main(int argc, char *argv[])
 				image = applyGreyscale(image);
 				if (!thirdArgument)
 				{
-					printf("You might pass a third argument with a path to the output file.\n");
+					puts("You might pass a third argument with a path to the output file.");
 					exit(1);
 				}
 				else
