@@ -1,5 +1,3 @@
-# ENVIRONMENT
-
 PROGRAM_NAME   = ppmip
 
 SOURCES_DIR    = ./src
@@ -7,17 +5,16 @@ HEADERS_DIR    = ./include
 OBJECTS_DIR    = ./obj
 RESOURCES_DIR  = ./res
 
-OBJECTS        = $(OBJECTS_DIR)/utils.o $(OBJECTS_DIR)/file.o $(OBJECTS_DIR)/filters.o
-
-# MACROS
 CC             = gcc
 CFLAGS 	       = -Wall -I. -I$(HEADERS_DIR)
+OBJECTS        = $(OBJECTS_DIR)/utils.o $(OBJECTS_DIR)/file.o $(OBJECTS_DIR)/filters.o
+TEST_FILENAME  = $(RESOURCES_DIR)/test
 
-# PHONY CALLS
-.PHONY: all clean
+.PHONY: all build clean test cleantest cleanall
 
-# TASKS
-all: $(OBJECTS) $(PROGRAM_NAME)
+all: build
+
+build: $(OBJECTS) $(PROGRAM_NAME)
 	
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c $(HEADERS_DIR)/%.h
 	mkdir -p $(OBJECTS_DIR)
@@ -29,3 +26,15 @@ $(PROGRAM_NAME): $(SOURCES_DIR)/main.c $(OBJECTS)
 clean:
 	rm -f $(PROGRAM_NAME)
 	rm -rf $(OBJECTS_DIR)
+
+test: $(PROGRAM_NAME)
+	./$(PROGRAM_NAME) greyscale $(TEST_FILENAME).ppm $(TEST_FILENAME)-greyscale.ppm
+	./$(PROGRAM_NAME) threshold $(TEST_FILENAME).ppm $(TEST_FILENAME)-threshold.ppm
+
+cleantest:
+	rm -f $(TEST_FILENAME)-greyscale.ppm
+	rm -f $(TEST_FILENAME)-threshold.ppm
+	
+cleanall: clean cleantest
+	@echo "Cleaning all files has done."
+
