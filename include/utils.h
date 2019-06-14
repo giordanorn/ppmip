@@ -1,16 +1,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <stdbool.h>
+
 #define DEBUG 0
 #define VERBOSE 1
 
-#define uint unsigned int
-#define uchar unsigned char
-#define ushort unsigned short
+typedef unsigned int uint;
+typedef unsigned char uchar;
+typedef unsigned short ushort;
+typedef unsigned char Color;
 
-#define Color uchar
-
-#include <stdbool.h>
 
 enum {
 	HELP,
@@ -39,7 +39,6 @@ typedef struct {
 	Pixel **pixelmap;
 } PPM;
 
-	
 int checkOption(char *);
 int parseOption(char *);
 void printHelp(void);
@@ -47,4 +46,5 @@ void printShortHelp(char *);
 void printImageInfo(PPM);
 void printPixel(int, int, Pixel);
 bool userConfirmation(char *);
+
 #endif
