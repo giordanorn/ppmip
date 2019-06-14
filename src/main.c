@@ -32,21 +32,36 @@ main(int argc, char *argv[])
 			}
 			else
 			{
-				PPM image = *readPPM(secondArgument);
-				image = applyGreyscale(image);
 				if (!thirdArgument)
 				{
 					puts("You might pass a third argument with a path to the output file.");
 					exit(1);
 				}
-				else
-				{
-					writePPM(thirdArgument, image);
-					break;
-				}
+				PPM image = *readPPM(secondArgument);
+				image = applyGreyscale(image);
+				writePPM(thirdArgument, image);
+				break;
 			}
 			break;
 		case THRESHOLD:
+			if (!secondArgument)
+			{	
+				printf("%s option requires a path to a file as second argument.\n", OPTIONS(THRESHOLD));
+				exit(1);
+			}
+			else
+			{
+				if (!thirdArgument)
+				{
+					puts("You might pass a third argument with a path to the output file.");
+					exit(1);
+				}
+				PPM image = *readPPM(secondArgument);
+				image = applyThreshold(image);
+				writePPM(thirdArgument, image);
+				break;
+			}
+			break;
 		case BLUR:
 		case SHARP:
 		case ROTATE:

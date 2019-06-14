@@ -5,7 +5,7 @@
 
 // All methods are immutable, i.e., does not change the original variable and returns a new instance.
 PPM applyGreyscale(PPM);
-PPM applyThresholding(PPM);
+PPM applyThreshold(PPM);
 PPM applyBlur(PPM);
 PPM applySharpness(PPM);
 PPM applyRotation(PPM);
