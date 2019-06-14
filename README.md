@@ -8,13 +8,13 @@ I'm currently working on it in my free time totally for fun.
 
 ## Functionalities
 The project documentation asks for some functionalities. They are arguments to be passed onto the program. The options are:
-- greyscale: applies greyscale filter to an PPM image passed as second argument; *(Done!)*
-- threshold: binarization of the image using thresholding;
-- blur: performs blurring;
-- sharp: perform sharpening;
-- rotate: rotate the image by a given angle;
-- amplify: magnify the image by a given zoom;
-- reduce: reduce the image by a given zoom.
+- [x] greyscale: applies greyscale filter to an PPM image passed as second argument;
+- [x] threshold: binarization of the image using thresholding;
+- [ ] blur: performs blurring;
+- [ ] sharp: perform sharpening;
+- [ ] rotate: rotate the image by a given angle;
+- [ ] amplify: magnify the image by a given zoom;
+- [ ] reduce: reduce the image by a given zoom.
 
 ## Instructions
 You might clone this repository and get into its folder and run `make`:
@@ -34,6 +34,14 @@ For instance:
 ```sh
 ./ppmip greyscale res/got.ppm res/got-greyscaled.ppm
 ```
+
+## Testing
+There is a test task for `make`. You may run the following:
+```sh
+make test
+```
+And then it should apply every available filter to the test image `res/test.ppm`. The output are files `res/test-<filter>.ppm` where `<filter>` is the applied filter.
+
 
 ## Disclaimer
 Respecting the current classes of ITP, I am not finishing this project until the semester 2019.1 is over.
