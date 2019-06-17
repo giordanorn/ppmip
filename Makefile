@@ -39,5 +39,5 @@ cleantest:
 	rm -f $(TEST_FILENAME)-threshold.ppm
 	
 cleanall: clean cleantest
-	@echo "Cleaning all files has done."
+	@echo "Cleaning all files done."
 
