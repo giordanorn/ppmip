@@ -6,7 +6,7 @@ OBJECTS_DIR    = ./obj
 RESOURCES_DIR  = ./res
 
 CC             = gcc
-CFLAGS 	       = -Wall -I. -I$(HEADERS_DIR)
+CFLAGS 	       = -Wall -I$(HEADERS_DIR)
 OBJECTS        = $(OBJECTS_DIR)/utils.o $(OBJECTS_DIR)/file.o $(OBJECTS_DIR)/filters.o
 TEST_FILENAME  = $(RESOURCES_DIR)/test
 
