@@ -87,3 +87,4 @@ applyZoomOut(PPM image)
 {
     return image;
 }
+// Teste de git-pull-request
