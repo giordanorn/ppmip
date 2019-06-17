@@ -10,14 +10,13 @@ CFLAGS 	       = -Wall -I. -I$(HEADERS_DIR)
 OBJECTS        = $(OBJECTS_DIR)/utils.o $(OBJECTS_DIR)/file.o $(OBJECTS_DIR)/filters.o
 TEST_FILENAME  = $(RESOURCES_DIR)/test
 
-.PHONY: all build clean test cleantest cleanall
+.PHONY: all build clean test cleantest cleanall dirs
 
 all: build
 
-build: $(OBJECTS) $(PROGRAM_NAME)
+build: dirs $(PROGRAM_NAME)
 	
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c $(HEADERS_DIR)/%.h
-	mkdir -p $(OBJECTS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@ 
 	
 $(PROGRAM_NAME): $(SOURCES_DIR)/main.c $(OBJECTS)
@@ -30,6 +29,10 @@ clean:
 test: $(PROGRAM_NAME)
 	./$(PROGRAM_NAME) greyscale $(TEST_FILENAME).ppm $(TEST_FILENAME)-greyscale.ppm
 	./$(PROGRAM_NAME) threshold $(TEST_FILENAME).ppm $(TEST_FILENAME)-threshold.ppm
+
+dirs:
+	mkdir -p $(OBJECTS_DIR)
+
 
 cleantest:
 	rm -f $(TEST_FILENAME)-greyscale.ppm
