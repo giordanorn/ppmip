@@ -19,7 +19,7 @@ build: dirs $(PROGRAM_NAME)
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c $(HEADERS_DIR)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@ 
 	
-$(PROGRAM_NAME): $(SOURCES_DIR)/main.c $(OBJECTS)
+$(PROGRAM_NAME): $(SOURCES_DIR)/$(PROGRAM_NAME).c $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 clean:
