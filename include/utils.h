@@ -11,7 +11,6 @@ typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned char Color;
 
-
 enum {
 	HELP,
 	GREYSCALE,
@@ -19,9 +18,9 @@ enum {
 	BLUR,
 	SHARP,
 	ROTATE,
-	AMPLIFY,
-	REDUCE,
-} OPTIONSMAP;
+	SCALEUP,
+	SCALEDOWN
+} Option;
 
 const int TOTAL_OPTIONS;
 char* OPTIONS(int);

@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "file.h"
 #include "filters.h"
+#include "transform.h"
 
 int
 main(int argc, char *argv[])
@@ -65,8 +66,8 @@ main(int argc, char *argv[])
 		case BLUR:
 		case SHARP:
 		case ROTATE:
-		case AMPLIFY:
-		case REDUCE:
+		case SCALEUP:
+		case SCALEDOWN:
 			printf("%s: Option %s is currently working in progress. It will be available soon.\n", programName, firstArgument);
 			break;
 		default:
