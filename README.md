@@ -73,7 +73,3 @@ There is a test task for `make`. You may run the following:
 make test
 ```
 And then it should apply every available function to the test image `res/test.ppm`. The output are files `res/test-<function>.ppm` where `<filter>` is the applied filter.
-
-
-# Disclaimer
-Respecting the current classes of ITP, I am not finishing this project until the semester 2019.1 is over.
